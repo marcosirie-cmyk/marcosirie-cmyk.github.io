@@ -13,8 +13,8 @@ const ph = (seed, w = 1200, h = 1600) =>
   `https://picsum.photos/seed/${seed}/${w}/${h}`;
 
 const SITE = {
-  nome: "seu nome",
-  descricao: "Fotografia autoral, eventos e projetos comerciais.",
+  nome: "Lucas Pasetti",
+  descricao: "Fotografia particular — o olhar de um aprendiz.",
   email: "contato@seudominio.com",
   instagram: "https://instagram.com/seuusuario",
   whatsapp: "5511999999999", // só números, com DDI e DDD
