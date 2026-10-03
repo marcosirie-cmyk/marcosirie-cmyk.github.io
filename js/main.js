@@ -48,7 +48,7 @@
     const f = document.createElement("footer");
     f.className = "site-footer";
     f.innerHTML = `
-      <span>© ${new Date().getFullYear()} ${esc(SITE.nome)}</span>
+      <span>© ${new Date().getFullYear()} ${esc(SITE.nome)}. Todas as fotos protegidas por direitos autorais.</span>
       <span>
         <a href="${esc(SITE.instagram)}" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>
@@ -232,7 +232,13 @@
     $(".lb-fechar", lb).onclick = fechar;
     $(".lb-ant", lb).onclick = (e) => { e.stopPropagation(); mostrar(i - 1); };
     $(".lb-prox", lb).onclick = (e) => { e.stopPropagation(); mostrar(i + 1); };
-    lb.addEventListener("click", (e) => { if (e.target === lb) fechar(); });
+    // A foto não recebe cliques (proteção), então confere se o clique foi fora dela
+    lb.addEventListener("click", (e) => {
+      if (e.target !== lb) return;
+      const r = img.getBoundingClientRect();
+      const dentro = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!dentro) fechar();
+    });
 
     addEventListener("keydown", (e) => {
       if (!lb.classList.contains("aberto")) return;
@@ -250,6 +256,12 @@
       x0 = null;
     });
   }
+
+  /* ---------- Proteção das fotos ---------- */
+  // Bloqueia clique direito e arrastar sobre as fotos (o resto do site continua normal)
+  const areaDeFoto = (el) => el instanceof Element && el.closest("img, .slide, .cover-img, .foto, .categoria, .lightbox");
+  document.addEventListener("contextmenu", (e) => { if (areaDeFoto(e.target)) e.preventDefault(); });
+  document.addEventListener("dragstart", (e) => { if (areaDeFoto(e.target)) e.preventDefault(); });
 
   /* ---------- Transição suave entre páginas ---------- */
   document.addEventListener("click", (e) => {

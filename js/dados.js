@@ -4,7 +4,8 @@
  * Edite este arquivo para trocar nome, categorias, projetos e fotos.
  *
  * Fotos: coloque seus arquivos em /img (ex.: img/infinitum/01.jpg) e use
- * o caminho no lugar das URLs de exemplo. As URLs picsum.photos abaixo
+ * o caminho no lugar das URLs de exemplo. Exporte com no máximo 1600px
+ * no lado maior (JPG 70–80) e com copyright nos metadados (ver LEIA-ME.md). As URLs picsum.photos abaixo
  * são apenas imagens provisórias.
  */
 
